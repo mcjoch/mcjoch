@@ -1,0 +1,46 @@
+<mvc:View controllerName="mj.toepen.controller.Game" displayBlock="true" xmlns:dnd="sap.ui.core.dnd" xmlns:mj="mj.toepen.controls"
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.f" xmlns:mvc="sap.ui.core.mvc">
+	<Page id="page" title="{i18n>title}">
+		<content>
+			<l:FixFlex fixFirst="false">
+				<l:flexContent>
+					<VBox justifyContent="Center" alignItems="Center" height="100%" width="100%">
+						<Title text="Cards played this round"/>
+						<f:GridContainer inlineBlockLayout="true" class="centerBoard" id="centerBoard" width="320px" items="{gameModel>/cardsOnBoard}">
+							<f:layout>
+								<f:GridContainerSettings rowSize="84px" columnSize="75px" gap="5px"/>
+							</f:layout>
+							<f:dragDropConfig>
+								<dnd:DropInfo sourceAggregation="items" dropPosition="Between" drop="onDrop"/>
+							</f:dragDropConfig>
+							<f:items>
+								<mj:Card value="{gameModel>value}" suit="{gameModel>suit}" won="{gameModel>won}"/>
+							</f:items>
+						</f:GridContainer>
+						<TextArea id="consoleTextArea" value="{gameModel>/consoleText}" class="sapUiSmallMarginTop" enabled="false" rows="8" width="320px"/>
+					</VBox>
+				</l:flexContent>
+				<l:fixContent>
+					<VBox alignItems="Center">
+						<MessageStrip text="Your turn" visible="{gameModel>/player/currentTurn}" type="Success" showIcon="false" showCloseButton="false"
+							class="sapUiMediumMarginBottom"></MessageStrip>
+						<HBox justifyContent="Center" width="100%">
+							<f:GridContainer id="playerHand" inlineBlockLayout="true" width="320px" items="{gameModel>/player/hand}">
+								<f:layout>
+									<f:GridContainerSettings rowSize="84px" columnSize="75px" gap="5px"/>
+								</f:layout>
+								<f:dragDropConfig>
+									<dnd:DragInfo sourceAggregation="items" targetAggregation="items" dropEffect="Copy" dragStart="onDragStart" dragEnter="onDragEnter"
+										drop="onDrop"/>
+								</f:dragDropConfig>
+								<f:items>
+									<mj:Card value="{gameModel>value}" suit="{gameModel>suit}" select="selectCard"/>
+								</f:items>
+							</f:GridContainer>
+						</HBox>
+					</VBox>
+				</l:fixContent>
+			</l:FixFlex>
+		</content>
+	</Page>
+</mvc:View>

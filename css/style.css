@@ -1,0 +1,35 @@
+/* add your custom styles here */
+
+.card {
+	width: 50px;
+    height: 80px;
+    padding: 10px;
+    border: solid 1px #808080;
+    background-color: white;
+    display: inline-block;
+    border-radius: 10px;
+    font-size: 24px;
+    text-align: center;
+    margin: 3px;
+    border: solid 3px;
+}
+
+.card .symbol {
+	font-size: 36px;
+}
+
+.centerBoard {
+	border: solid 1px #808080;
+}
+
+.card.black {
+	color: #000000;
+}
+
+.card.red {
+	color: red;
+}
+
+.card.winner {
+	background-color: #b0ceff;
+}
