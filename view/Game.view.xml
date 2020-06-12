@@ -1,11 +1,30 @@
 <mvc:View controllerName="mj.toepen.controller.Game" displayBlock="true" xmlns:dnd="sap.ui.core.dnd" xmlns:mj="mj.toepen.controls"
-	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.f" xmlns:mvc="sap.ui.core.mvc">
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.f" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc">
 	<Page id="page" title="{i18n>title}">
 		<content>
 			<l:FixFlex fixFirst="false">
 				<l:flexContent>
 					<VBox justifyContent="Center" alignItems="Center" height="100%" width="100%">
-						<Title text="Cards played this round"/>
+						<f:GridContainer inlineBlockLayout="true" class="sapUiMediumMarginBottom" id="playersBoard" width="320px"
+							items="{gameModel>/players}">
+							<f:layout>
+								<f:GridContainerSettings rowSize="84px" columnSize="75px" gap="5px"/>
+							</f:layout>
+							<f:dragDropConfig>
+								<dnd:DropInfo sourceAggregation="items" dropPosition="Between" drop="onDrop"/>
+							</f:dragDropConfig>
+							<f:items>
+								<VBox alignItems="Center">
+									<core:Icon src="{gameModel>icon}" size="{= ${gameModel>currentTurn} ? '50px' : '30px' }" color="{= ${gameModel>currentTurn} ? '#068000' : '#949494' }">
+										<core:layoutData>
+											<FlexItemData growFactor="1"/>
+										</core:layoutData>
+									</core:Icon>
+									<Text text="{gameModel>name}" />
+								</VBox>
+							</f:items>
+						</f:GridContainer>
+						<Title text="Cards played this round" class="sapUiMediumMarginTop"/>
 						<f:GridContainer inlineBlockLayout="true" class="centerBoard" id="centerBoard" width="320px" items="{gameModel>/cardsOnBoard}">
 							<f:layout>
 								<f:GridContainerSettings rowSize="84px" columnSize="75px" gap="5px"/>

@@ -28,6 +28,7 @@ sap.ui.define([
 		},
 		
 		redraw: function() {
+			document.activeElement.blur();
 			this.getModel("gameModel").updateBindings();
 		},
 	
