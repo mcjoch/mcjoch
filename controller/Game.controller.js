@@ -2,8 +2,9 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"../model/formatter",
 	"sap/ui/model/json/JSONModel",
-	"mj/toepen/lib/Game"
-], function(Controller, formatter, JSONModel, Game) {
+	"mj/toepen/lib/Game",
+	"sap/ui/core/Fragment"
+], function(Controller, formatter, JSONModel, Game, Fragment) {
 	"use strict";
 
 	return Controller.extend("mj.toepen.controller.App", {
@@ -14,29 +15,38 @@ sap.ui.define([
 		onInit: function() {
 			this.game = new Game(this);
 			this.setModel(new JSONModel(this.game), "gameModel");
-			
+
 			this.getRouter().getTarget("home").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 		},
-		
+
 		handleRouteMatched: function() {
 			this.openStartGameDialog();
 		},
 
-		_getStartGameDialog: function() {
-			if (!this._oDialog) {
-				this._oDialog = sap.ui.xmlfragment("mj.toepen.view.StartGame", this);
-				this.getView().addDependent(this._oDialog);
-			}
-			return this._oDialog;
-		},
-		
 		openStartGameDialog: function() {
-			this._getStartGameDialog().open();
+			if (!this._oDialog) {
+				Fragment.load({
+					id: this.getView().getId(),
+					name: "mj.toepen.view.StartGame",
+					type: "XML",
+					controller: this
+				}).then(function(oDialog) {
+					this._oDialog = oDialog;
+					this.getView().addDependent(this._oDialog);
+					this._oDialog.open();
+				}.bind(this));
+			} else {
+				this._oDialog.open();
+			}
+			
 		},
-	
-		startNewGame: function(oEvent, iNumPlayers) {
-			this.game.start(iNumPlayers);
-			this._getStartGameDialog().close();
+
+		startNewGame: function(oEvent) {
+			var iNumPlayers = Number(this.getView().byId("numPlayersButton").getSelectedKey());
+			var iNumPoints = Number(this.getView().byId("numPointsButton").getSelectedKey());
+
+			this.game.start(iNumPlayers, iNumPoints);
+			this._oDialog.close();
 			this.redraw();
 		},
 
@@ -77,7 +87,7 @@ sap.ui.define([
 		setModel: function(oModel, sName) {
 			return this.getView().setModel(oModel, sName);
 		},
-		
+
 		/**
 		 * Returns the application router
 		 */

@@ -14,6 +14,10 @@ sap.ui.define([
 				},
 				won: {
 					type: "boolean"
+				},
+				active: {
+					type: "boolean",
+					defaultValue: true
 				}
 			},
 
@@ -68,6 +72,11 @@ sap.ui.define([
 			if (oControl.getWon()) {
 				oRm.class("winner");
 			}
+			
+			if (!oControl.getActive()) {
+				oRm.class("inactive");
+			}
+			
 			oRm.class(oControl.getColor());
 			oRm.openEnd();
 

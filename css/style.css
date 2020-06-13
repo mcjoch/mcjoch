@@ -33,3 +33,7 @@
 .card.winner {
 	background-color: #c2ffbf;
 }
+
+.card.inactive {
+	background-color: #dedede;
+}

@@ -1,14 +1,28 @@
-<core:FragmentDefinition
-   xmlns="sap.m"
-   xmlns:core="sap.ui.core" >
-   <Dialog
-      title="Start new game">
-   	<content>
-   		<VBox alignItems="Center">
-   		<Button text="2 players" press="startNewGame($event, 2)" icon="sap-icon://customer"/>
-   		<Button text="3 players" press="startNewGame($event, 3)" icon="sap-icon://customer"/>
-   		<Button text="4 players" press="startNewGame($event, 4)" icon="sap-icon://customer"/>
-   		</VBox>
-   	</content>
-   </Dialog>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="Start new game">
+		<content>
+			<VBox alignItems="Center" class="sapUiMediumMarginTopBottom">
+				<Text text="Number of players:"/>
+				<SegmentedButton selectedKey="4" width="100%" id="numPlayersButton">
+					<items>
+						<SegmentedButtonItem text="2" key="2" width="80px"/>
+						<SegmentedButtonItem text="3" key="3" width="80px"/>
+						<SegmentedButtonItem text="4" key="4" width="80px"/>
+					</items>
+				</SegmentedButton>
+				
+				<Text text="Maximum number of points:" class="sapUiMediumMarginTop"/>
+				<SegmentedButton selectedKey="15" width="100%" id="numPointsButton">
+					<items>
+						<SegmentedButtonItem text="5" key="5" width="80px"/>
+						<SegmentedButtonItem text="10" key="10" width="80px"/>
+						<SegmentedButtonItem text="15" key="15" width="80px"/>
+					</items>
+				</SegmentedButton>
+			</VBox>
+		</content>
+		<beginButton>
+			<Button text="Start Game" press="startNewGame"/>
+		</beginButton>
+	</Dialog>
 </core:FragmentDefinition>
