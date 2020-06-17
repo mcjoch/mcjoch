@@ -22,6 +22,12 @@ sap.ui.define([
 		handleRouteMatched: function() {
 			this.openStartGameDialog();
 		},
+		
+		onToep: function(oEvent) {
+			if (!this.game.player.toep()) {
+				return;
+			}
+		},
 
 		openStartGameDialog: function() {
 			if (!this._oDialog) {

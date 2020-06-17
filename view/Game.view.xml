@@ -17,7 +17,7 @@
 							<f:items>
 								<VBox alignItems="Center">
 										<Text text="{gameModel>name}" />
-									<core:Icon src="{gameModel>icon}" size="{= ${gameModel>currentTurn} || ${gameModel>currentWinner} ? '50px' : '30px' }" color="{= ${gameModel>dead} ? '#e30000' : ${gameModel>currentWinner} ? '#068000' : ${gameModel>currentTurn} ? '#3271a8' : '#949494' }">
+									<core:Icon src="{gameModel>icon}" size="{= ${gameModel>currentTurn} || ${gameModel>currentWinner} ? '50px' : '30px' }" color="{= ${gameModel>folded} ? '#f59b00' : ${gameModel>dead} ? '#e30000' : ${gameModel>currentWinner} ? '#068000' : ${gameModel>currentTurn} ? '#3271a8' : '#949494' }">
 										<core:layoutData>
 											<FlexItemData growFactor="1"/>
 										</core:layoutData>
@@ -44,6 +44,7 @@
 				</l:flexContent>
 				<l:fixContent>
 					<VBox alignItems="Center">
+						<Button text="Toep!" enabled="{gameModel>/player/currentTurn}" type="Accept" icon="sap-icon://drill-up" press="onToep"/>
 						<HBox justifyContent="Center" width="100%">
 							<f:GridContainer id="playerHand" inlineBlockLayout="true" width="320px" items="{gameModel>/player/hand}">
 								<f:layout>
