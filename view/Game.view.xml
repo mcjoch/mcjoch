@@ -15,7 +15,7 @@
 								<dnd:DropInfo sourceAggregation="items" dropPosition="Between" drop="onDrop"/>
 							</f:dragDropConfig>
 							<f:items>
-								<VBox alignItems="Center">
+								<VBox alignItems="Center" height="92px">
 										<Text text="{gameModel>name}" />
 									<core:Icon src="{gameModel>icon}" size="{= ${gameModel>currentTurn} || ${gameModel>currentWinner} ? '50px' : '30px' }" color="{= ${gameModel>folded} ? '#f59b00' : ${gameModel>dead} ? '#e30000' : ${gameModel>currentWinner} ? '#068000' : ${gameModel>currentTurn} ? '#3271a8' : '#949494' }">
 										<core:layoutData>
