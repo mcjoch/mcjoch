@@ -12,7 +12,7 @@
 				</SegmentedButton>
 				
 				<Text text="Maximum number of points:" class="sapUiMediumMarginTop"/>
-				<SegmentedButton selectedKey="15" width="100%" id="numPointsButton">
+				<SegmentedButton selectedKey="10" width="100%" id="numPointsButton">
 					<items>
 						<SegmentedButtonItem text="5" key="5" width="80px"/>
 						<SegmentedButtonItem text="10" key="10" width="80px"/>

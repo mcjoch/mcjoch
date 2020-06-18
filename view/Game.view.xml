@@ -6,8 +6,7 @@
 				<l:flexContent>
 					<VBox justifyContent="Center" alignItems="Center" height="100%" width="100%">
 						<Text text="Max points: {gameModel>/maxPoints} / Stake: {gameModel>/stake} " class="sapUiMediumMarginBottom"/>
-						<f:GridContainer inlineBlockLayout="true" class="sapUiSmallMarginBottom" id="playersBoard" width="320px"
-							items="{gameModel>/players}">
+						<f:GridContainer inlineBlockLayout="true" class="sapUiSmallMarginBottom" id="playersBoard" width="320px" items="{gameModel>/players}">
 							<f:layout>
 								<f:GridContainerSettings rowSize="84px" columnSize="75px" gap="5px"/>
 							</f:layout>
@@ -16,14 +15,14 @@
 							</f:dragDropConfig>
 							<f:items>
 								<VBox alignItems="Center" height="92px">
-										<Text text="{gameModel>name}" />
-									<core:Icon src="{gameModel>icon}" size="{= ${gameModel>currentTurn} || ${gameModel>currentWinner} ? '50px' : '30px' }" color="{= ${gameModel>folded} ? '#f59b00' : ${gameModel>dead} ? '#e30000' : ${gameModel>currentWinner} ? '#068000' : ${gameModel>currentTurn} ? '#3271a8' : '#949494' }">
+									<Text text="{gameModel>name}"/>
+									<core:Icon src="{gameModel>icon}" size="{= ${gameModel>currentTurn} || ${gameModel>currentWinner} ? '50px' : '30px' }"
+										color="{= ${gameModel>folded} ? '#f59b00' : ${gameModel>dead} ? '#e30000' : ${gameModel>currentWinner} ? '#068000' : ${gameModel>currentTurn} ? '#3271a8' : '#949494' }">
 										<core:layoutData>
 											<FlexItemData growFactor="1"/>
 										</core:layoutData>
 									</core:Icon>
-								
-									<Text text="{gameModel>points}" />
+									<Text text="{gameModel>points}"/>
 								</VBox>
 							</f:items>
 						</f:GridContainer>
@@ -36,10 +35,14 @@
 								<dnd:DropInfo sourceAggregation="items" dropPosition="Between" drop="onDrop"/>
 							</f:dragDropConfig>
 							<f:items>
-								<mj:Card value="{gameModel>value}" suit="{gameModel>suit}" won="{gameModel>won}"/>
+								<VBox alignItems="Center">
+									<mj:Card value="{gameModel>value}" suit="{gameModel>suit}" won="{gameModel>won}"/>
+									<Text text="{gameModel>playedBy/name}"/>
+								</VBox>
 							</f:items>
 						</f:GridContainer>
-						<TextArea visible="false" id="consoleTextArea" value="{gameModel>/consoleText}" class="sapUiSmallMarginTop" enabled="false" rows="8" width="320px"/>
+						<TextArea visible="false" id="consoleTextArea" value="{gameModel>/consoleText}" class="sapUiSmallMarginTop" enabled="false" rows="8"
+							width="320px"/>
 					</VBox>
 				</l:flexContent>
 				<l:fixContent>
