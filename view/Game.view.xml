@@ -47,7 +47,7 @@
 				</l:flexContent>
 				<l:fixContent>
 					<VBox alignItems="Center">
-						<Button text="Toep!" enabled="{gameModel>/player/currentTurn}" type="Accept" icon="sap-icon://drill-up" press="onToep"/>
+						<Button text="Toep!" visible="{= ${gameModel>/player/currentTurn} === true}" type="Accept" icon="sap-icon://add" press="onToep"/>
 						<HBox justifyContent="Center" width="100%">
 							<f:GridContainer id="playerHand" inlineBlockLayout="true" width="320px" items="{gameModel>/player/hand}">
 								<f:layout>

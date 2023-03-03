@@ -22,7 +22,10 @@
 			</VBox>
 		</content>
 		<beginButton>
-			<Button text="Start Game" press="startNewGame"/>
+			<Button text="How to Play" press="howToPlay" icon="sap-icon://information"/>
 		</beginButton>
+		<endButton>
+			<Button text="Start Game" press="startNewGame" type="Emphasized" icon="sap-icon://media-play"/>
+		</endButton>
 	</Dialog>
 </core:FragmentDefinition>

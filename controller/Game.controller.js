@@ -47,6 +47,10 @@ sap.ui.define([
 			
 		},
 
+		howToPlay: function() {
+			window.open("https://gamerules.com/rules/toepen-card-game/", '_blank');	
+		},
+
 		startNewGame: function(oEvent) {
 			var iNumPlayers = Number(this.getView().byId("numPlayersButton").getSelectedKey());
 			var iNumPoints = Number(this.getView().byId("numPointsButton").getSelectedKey());
